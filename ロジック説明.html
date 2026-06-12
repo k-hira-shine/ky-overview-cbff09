@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>競馬予想ロジック v1.5 — 仕組みと検証結果（社内説明用）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    background: #f4f6f9; color: #1a2433; line-height: 1.6;
+    padding: 32px 24px; max-width: 1080px; margin: 0 auto;
+  }
+  h1 { font-size: 26px; margin-bottom: 4px; }
+  .lead { color: #5a6b80; font-size: 14px; margin-bottom: 24px; }
+  .section { background: #fff; border-radius: 12px; padding: 20px 24px; margin-bottom: 18px;
+             box-shadow: 0 1px 4px rgba(20,40,80,.08); }
+  h2 { font-size: 16px; color: #0b57d0; margin-bottom: 14px; border-left: 4px solid #0b57d0; padding-left: 10px; }
+  h3 { font-size: 13.5px; margin-bottom: 8px; }
+
+  .pipeline { display: grid; align-items: stretch; }
+  .p5 { grid-template-columns: 1fr 18px 1fr 18px 1fr 18px 1fr 18px 1.1fr; }
+  .p3 { grid-template-columns: 1fr 18px 1fr 18px 1.1fr; }
+  .step { background: #eef4ff; border: 1.5px solid #b9d0f5; border-radius: 10px;
+          padding: 12px 10px 10px; text-align: center; min-height: 130px;
+          display: flex; flex-direction: column; align-items: center; }
+  .step.human { background: #fff7e6; border-color: #f0cd84; }
+  .step.gate  { background: #eafaf0; border-color: #9fdcb8; }
+  .step .icon { font-size: 24px; line-height: 1.2; }
+  .step .name { font-weight: 700; font-size: 13px; margin: 4px 0 2px; }
+  .step .desc { font-size: 11px; color: #51627a; line-height: 1.45; }
+  .step .tag  { display: inline-block; margin-top: auto; padding-top: 6px; font-size: 10px; font-weight: 700; }
+  .step .tag span { padding: 2px 8px; border-radius: 20px; background: #0b57d0; color: #fff; }
+  .step.human .tag span { background: #c98a00; }
+  .step.gate  .tag span { background: #14843f; }
+  .arrow { display: flex; align-items: center; justify-content: center;
+           color: #8aa0bd; font-size: 16px; font-weight: 700; }
+
+  .cols { display: flex; gap: 18px; flex-wrap: wrap; }
+  .col { flex: 1; min-width: 300px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { border: 1px solid #dde5ef; padding: 7px 10px; text-align: left; }
+  th { background: #f0f4fa; font-size: 12px; }
+  td.num { text-align: center; font-weight: 700; }
+  td.bad { color: #b3261e; } td.good { color: #14843f; }
+
+  .point { display: flex; gap: 10px; margin-bottom: 7px; font-size: 13px; }
+  .point .n { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: #0b57d0;
+              color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+  .point.sec .n { background: #14843f; }
+
+  .share-box { display: flex; gap: 14px; flex-wrap: wrap; }
+  .share { flex: 1; min-width: 280px; border-radius: 10px; padding: 14px 16px; font-size: 13px; }
+  .share.bad  { background: #fdf0f2; border: 1.5px solid #eebac2; }
+  .share.good { background: #eafaf0; border: 1.5px solid #9fdcb8; }
+  .share h3 { font-size: 13.5px; margin-bottom: 8px; }
+  .share ul { margin-left: 18px; }
+
+  .funnel { display: grid; grid-template-columns: 1fr 120px 1fr 120px 1fr; align-items: center; }
+  .fbox { border-radius: 10px; padding: 12px; text-align: center; min-height: 96px;
+          display: flex; flex-direction: column; justify-content: center; }
+  .fbox b { font-size: 22px; } .funnel .fbox { min-height: 110px; }
+  .fbox .sub { font-size: 11.5px; color: #51627a; margin-top: 4px; line-height: 1.45; }
+  .fbox.all { background: #f0f4fa; border: 1.5px solid #c9d6e8; }
+  .fbox.mid { background: #eef4ff; border: 1.5px solid #b9d0f5; }
+  .fbox.fin { background: #eafaf0; border: 2px solid #14843f; }
+  .farrow { text-align: center; font-size: 11px; color: #51627a; font-weight: 700; padding: 0 8px; }
+  .farrow .a { font-size: 18px; color: #8aa0bd; display: block; line-height: 1; }
+
+  .note { font-size: 11.5px; color: #7a8aa0; margin-top: 10px; }
+  .kpi { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 4px; }
+  .kpi div { flex: 1; min-width: 160px; background: #f0f4fa; border-radius: 10px; padding: 12px; text-align: center; }
+  .kpi b { display: block; font-size: 19px; color: #0b57d0; }
+  .kpi span { font-size: 11.5px; color: #51627a; }
+  .warn { background: #fdf6e6; border: 1.5px solid #f0cd84; border-radius: 10px; padding: 12px 16px; font-size: 13px; margin-top: 10px; }
+  .secret { display:inline-block; background:#b3261e; color:#fff; font-size:11px; font-weight:700;
+            padding:2px 10px; border-radius:20px; vertical-align:middle; margin-left:8px; }
+  @media print { body { background: #fff; padding: 10px; } .section { box-shadow: none; border: 1px solid #ddd; } }
+</style>
+</head>
+<body>
+
+<h1>競馬予想ロジック v1.5：仕組みと検証結果<span class="secret">社内資料・一般公開不可</span></h1>
+<p class="lead">週末レース予想のnote販売（500円×10部限定・メルマガ約9,000人）に使う予想ロジックの全体像。<b>プロ予想家「丞相」の体系を全ソースから再構築し、過去436レースの実測データで検品・補正したもの</b>。現在はペーパートレード（販売せず予想だけ確定して成績を記録）で前向き検証中。</p>
+
+<div class="section">
+  <h2>1. ロジックの成り立ち：4つのソース → データで検品 → 正典v1.5</h2>
+  <div class="pipeline p5">
+    <div class="step">
+      <div class="icon">📚</div>
+      <div class="name">① 教材PDF 14点</div>
+      <div class="desc">丞相のプロ馬券師資料204頁ほか。印の体系・ファクター24種（2024年）</div>
+      <div class="tag"><span>理論の土台</span></div>
+    </div>
+    <div class="arrow">＋</div>
+    <div class="step">
+      <div class="icon">🎬</div>
+      <div class="name">② YouTube 25本</div>
+      <div class="desc">字幕から機械抽出。予想手順7選・減点方式・コース攻略（2025-26年）</div>
+      <div class="tag"><span>手順・数値基準</span></div>
+    </div>
+    <div class="arrow">＋</div>
+    <div class="step">
+      <div class="icon">𝕏</div>
+      <div class="name">③ X 329件</div>
+      <div class="desc">手法ポストのみ絞って取得（Apify・約30円）。本人の実戦スタイル</div>
+      <div class="tag"><span>実戦の生数値</span></div>
+    </div>
+    <div class="arrow">＋</div>
+    <div class="step">
+      <div class="icon">📝</div>
+      <div class="name">④ 有料note 264本</div>
+      <div class="desc">購入済み実戦予想記事。教材非公開だった「狙の絞り込み」を逆算</div>
+      <div class="tag"><span>商品形式の手本</span></div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step gate">
+      <div class="icon">🔬</div>
+      <div class="name">実測で検品 → v1.5</div>
+      <div class="desc">過去436レース×馬3,123頭で各ルールを個別検証。効くものだけ残す</div>
+      <div class="tag"><span>正典（§15が最優先）</span></div>
+    </div>
+  </div>
+  <p class="note">ソース間でルールが食い違う場合の優先順位: 実測 ＞ note実戦 ＞ YouTube/X ＞ 教材PDF。例:「距離延長は危険」（教材）は実測で否定 → 削除済み。</p>
+</div>
+
+<div class="section">
+  <h2>2. 毎週のフロー：レースを絞る → 7ステップで予想 → 記録</h2>
+  <div class="funnel">
+    <div class="fbox all"><b>36レース</b><div class="sub">土曜の全レース（3場）</div></div>
+    <div class="farrow"><span class="a">→</span>新馬・未勝利・障害を機械除外</div>
+    <div class="fbox mid"><b>17レース</b><div class="sub">検討テーブルに載る平場・条件戦</div></div>
+    <div class="farrow"><span class="a">→</span>見送り基準＋選定基準</div>
+    <div class="fbox fin"><b>6レース</b><div class="sub">予想を出すレース（6/13実績）</div><div class="sub" style="font-weight:700;color:#14843f;">「自信のないレースは買わない」</div></div>
+  </div>
+  <div class="cols" style="margin-top:14px;">
+    <div class="col">
+      <h3>見送り基準（機械判定）</h3>
+      <table>
+        <tr><th>条件</th><th>理由</th></tr>
+        <tr><td>単勝1.4倍以下の馬がいる</td><td>配当に妙味がない</td></tr>
+        <tr><td>1〜3番人気が全員「減点なし」</td><td>順当決着濃厚＝波乱の余地なし</td></tr>
+        <tr><td>狙える中人気馬がゼロ</td><td>買う理由がない</td></tr>
+        <tr><td>9頭以下の少頭数</td><td>配当が安い</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <h3>予想ステップ（現在実装して動いているものだけ）</h3>
+      <div class="point"><div class="n">1</div><div>データの機械取得（出馬表・近5走の着差/通過順/上がり・血統・馬体重）</div></div>
+      <div class="point"><div class="n">2</div><div>来ない馬を機械的に消す（前走1.5秒以上負け 等）</div></div>
+      <div class="point"><div class="n">3</div><div>展開予想（逃げ・先行馬の頭数と枠。通過順データで裏付け）</div></div>
+      <div class="point"><div class="n">4</div><div>危険な人気馬チェック（5パターン）</div></div>
+      <div class="point"><div class="n">5</div><div>印付け（絞れなければ見送り）＋買い目A/B生成</div></div>
+      <div class="point"><div class="n">6</div><div>前日オッズ照合（狙が人気しすぎていないかの市場との答え合わせ）</div></div>
+      <div class="warn" style="margin-top:12px;">📌 <b>正典にあるが現運用では未実装のもの</b>: 厩舎コメント確認・調教の「勝負気配」判定（いずれもデータが有料・netkeibaプレミアム契約で解放）／当日の馬場傾向の印への反映（現状は当日朝の人手確認のみ）</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>3. 判定ルールの中身（実測値つき）</h2>
+  <div class="cols">
+    <div class="col">
+      <h3>軸（◯）＝1〜3番人気から減点方式で選ぶ</h3>
+      <table>
+        <tr><th>減点</th><th>条件</th><th>実測の裏付け</th></tr>
+        <tr><td class="num bad">-5</td><td>前走逃げて好走</td><td>複勝率52.8%→<b>42.6%</b>・複勝回収64%（n=94）</td></tr>
+        <tr><td class="num bad">-4</td><td>昇級初戦／前走ローカル</td><td>—</td></tr>
+        <tr><td class="num bad">-3</td><td>6ヶ月以上の休み明け</td><td>複勝率<b>43.9%</b>・単回収59.5%（n=41）</td></tr>
+        <tr><td class="num bad">-2</td><td>急坂コース実績なし／馬体重±15kg</td><td>±15kgはn=24で検証継続</td></tr>
+        <tr><td class="num bad">-1</td><td>初の回り方向 等</td><td>—</td></tr>
+      </table>
+      <p class="note">前提: 1〜3番人気のどれかが3着以内に入る確率は実測91%。軸はここから「不安の少ない順」。</p>
+    </div>
+    <div class="col">
+      <h3>狙（◎）と穴（☆）のシグナル</h3>
+      <table>
+        <tr><th>シグナル</th><th>実測成績</th><th>向く券種</th></tr>
+        <tr><td>条件替わり2戦目で前進</td><td class="good">単勝回収<b>93%</b>（基準73%・n=288）</td><td>単勝</td></tr>
+        <tr><td>距離延長で前に行ける</td><td class="good">単勝回収83%</td><td>単勝</td></tr>
+        <tr><td>叩き3走目</td><td class="good">複勝回収<b>95%</b>（n=212）</td><td>ワイド</td></tr>
+        <tr><td>ダートの逃げ馬</td><td class="good">複勝率41%・複勝回収<b>165%</b>（n=226）</td><td>複勝・ワイド</td></tr>
+        <tr><td>前走2〜4着</td><td>複勝率26%（市場に織込み済み）</td><td>必要条件扱い</td></tr>
+      </table>
+      <p class="note">◎の確定は「前走2〜4着 × 条件好転 × 前に行ける枠」の3点セット（丞相の実戦記事264本からの逆算）＋上記シグナル。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>4. 実測検証で「採用したもの」と「捨てたもの」</h2>
+  <div class="share-box">
+    <div class="share good">
+      <h3>✅ データで裏付けが取れた（採用）</h3>
+      <ul>
+        <li>前走逃げて好走した人気馬は危ない（複勝率-10pt・最強の実証）</li>
+        <li>ダートの逃げ馬は残る（複勝ベタ買いで回収165%・京都ダは209%）</li>
+        <li>条件替わり2戦目の良化は買い（単勝回収+20pt）</li>
+        <li>見送り基準（バックテストで見送り5回中4回が妥当と確認）</li>
+      </ul>
+    </div>
+    <div class="share bad">
+      <h3>❌ 検証して捨てた・制限した（丞相の教えでも）</h3>
+      <ul>
+        <li>「内枠1-2枠が穴の基本」→ 今の馬場では<b>逆</b>（内18.2% vs 外21.5%）</li>
+        <li>「距離延長は危険」→ 人気馬では単勝回収96%と<b>むしろ好成績</b></li>
+        <li>「芝→ダート替わりの穴」→ 条件戦では効かず<b>未勝利戦限定</b>に</li>
+        <li>「人気薄騎手狙い」→ 丞相自身が2023年に失効を自認</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>5. 検証結果と現在地</h2>
+  <div class="kpi">
+    <div><b>436レース</b><span>検証標本（平場・条件戦3ヶ月分）×馬3,123頭</span></div>
+    <div><b>42.4%</b><span>バックテスト①重賞12R<br>＝重賞は不向きと確認</span></div>
+    <div><b>186.3%</b><span>バックテスト②平場・条件戦12R<br>（万馬券1発含む・小標本）</span></div>
+    <div><b>進行中</b><span>ペーパートレード（6/13〜）<br>結果混入ゼロの前向き検証</span></div>
+  </div>
+  <div class="warn">⚠️ 186%は標本が小さく断定不可。<b>販売開始の基準＝フォワードテストで回収率100%超を、まぐれ非依存で4週以上維持</b>。それまで販売しない。買い目は「相手=上位人気固定（A）」vs「相手=自分の印（B）」の2系統を毎週併記して比較検証中。</div>
+</div>
+
+<div class="section">
+  <h2>6. 商品化の方針と公開時のルール（終礼FB＋法務調査の反映）</h2>
+  <div class="cols">
+    <div class="col">
+      <h3>商品方針（6/12 終礼FB）</h3>
+      <div class="point"><div class="n">1</div><div><b>エンタメ前提の予想屋</b>。当てること自体を売りにしない（回収率で勝つ設計）</div></div>
+      <div class="point"><div class="n">2</div><div><b>納得感</b>＝「この馬に賭けてみたい」と思わせる。形式は丞相のnoteをトレース（◎この馬・結論ファースト）</div></div>
+      <div class="point"><div class="n">3</div><div><b>断言せず炎上しない</b>＋「買ってよかった」のリピート設計（全件公開・的中㊗️追記・次週予告）</div></div>
+    </div>
+    <div class="col">
+      <h3>公開時の法務ルール（ディープリサーチ済・出典つき）</h3>
+      <div class="point sec"><div class="n">✓</div><div>販売自体は適法（許認可不要）。noteの特商法表記は<b>本名必須</b>（名義は要決裁）</div></div>
+      <div class="point sec"><div class="n">✓</div><div>「必ず当たる」等は三重禁止（景表法＋JRA詐欺手口リスト＋note規約）</div></div>
+      <div class="point sec"><div class="n">✓</div><div><b>回収率の数字はnote販促に出さない</b>（規約の「利益を公開して購入を煽る」に抵触リスク）→ 一般向けは確率表現に言い換え。本資料の数字は社内限り</div></div>
+    </div>
+  </div>
+</div>
+
+<p class="note">作成 2026-06-12 ／ 詳細資料: 正典 logic/予想ロジック.md（v1.5）・backtest/（検証4本）・docs/法務調査_20260612.md・docs/商品方針_終礼FB_20260612.md ／ 印刷はそのままA4縦でレイアウトされます</p>
+
+</body>
+</html>
