@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>競馬予想 第1号 振り返りと改善（上司報告用）</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A4; margin: 0; }
+  body { font-family:"Hiragino Sans","Yu Gothic",sans-serif; color:#1a2433; line-height:1.5; background:#e8ebf0; }
+  .sheet { width:210mm; min-height:297mm; padding:11mm 12mm 9mm; background:#fff; margin:0 auto; }
+  h1 { font-size:18pt; margin-bottom:1mm; }
+  .sub { color:#5a6b80; font-size:9pt; margin-bottom:4mm; }
+  .secret { display:inline-block; background:#b3261e; color:#fff; font-size:7.5pt; font-weight:700; padding:.5mm 3mm; border-radius:5mm; vertical-align:middle; margin-left:3mm; }
+  .conc { background:#eef4ff; border:1.5px solid #0b57d0; border-radius:2mm; padding:3mm 4mm; margin-bottom:4mm; }
+  .conc b { color:#0b3a8a; font-size:11pt; }
+  .conc p { font-size:9pt; margin-top:1.5mm; color:#33415c; }
+  h2 { font-size:11pt; color:#0b57d0; border-left:4px solid #0b57d0; padding-left:7px; margin:4mm 0 2.5mm; }
+  .row { display:flex; gap:5mm; }
+  .col { flex:1; }
+  table { width:100%; border-collapse:collapse; font-size:8.5pt; margin-bottom:2mm; }
+  th,td { border:1px solid #dde5ef; padding:1.6mm 2mm; text-align:left; }
+  th { background:#f0f4fa; font-size:8pt; }
+  td.c { text-align:center; } .ok{color:#14843f;font-weight:700;} .ng{color:#b3261e;font-weight:700;}
+  .bar { height:6mm; border-radius:1mm; color:#fff; font-size:8pt; font-weight:700; display:flex; align-items:center; padding-left:2mm; margin-bottom:1.2mm; white-space:nowrap; }
+  .note { font-size:7.8pt; color:#7a8aa0; line-height:1.5; margin-top:1mm; }
+  ul { margin-left:4.5mm; font-size:8.7pt; line-height:1.7; }
+  .step { background:#f7f9fc; border-radius:2mm; padding:2.5mm 3.5mm; font-size:8.7pt; line-height:1.7; }
+  .step b { color:#0b57d0; }
+  .foot { margin-top:5mm; font-size:7.5pt; color:#8a96ad; border-top:1px solid #dde5ef; padding-top:2mm; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <h1>競馬予想プロジェクト 第1号 振り返りと改善<span class="secret">社内報告用</span></h1>
+  <div class="sub">2026/6/13(土) ペーパートレード第1号（実際の販売・購入はせず、予想を確定して結果を検証）の総括。明日6/14(日)からの改善方針を含む。</div>
+
+  <div class="conc">
+    <b>結論：予想（馬を選ぶ目）は機能した。課題は「印の使い方・買い方」で、その直し方はデータで特定済み。</b>
+    <p>6レース全てで印を付けた馬が3着以内に来た一方、現行の買い方では回収率47%にとどまった。原因は2つ：<b>(1) 印の役割を取り違えていた</b>（後述）、<b>(2) 買い方が本命中心で、当てた馬を拾えなかった</b>。同じ予想のまま買い方を変えれば回収率135%だったことを検証で確認。<b>明日6/14(日)から</b>改善を反映する。</p>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h2>① 何が起きたか（成績）</h2>
+      <table>
+        <tr><th>買い方</th><th class="c">回収率</th><th class="c">的中</th></tr>
+        <tr><td>現行の買い方</td><td class="c ng">47.3%</td><td class="c">1/41点</td></tr>
+        <tr><td>改善案の買い方</td><td class="c ok">134.7%</td><td class="c">4/6レース</td></tr>
+        <tr><td>競馬大学(競合)の本命</td><td class="c">112%</td><td class="c">2/5</td></tr>
+      </table>
+      <div class="note">回収率の絶対値は6レースでは確定的でない。重要なのは下記の構造的指標。</div>
+    </div>
+    <div class="col">
+      <h2>② 予想は当たっていたか（印の的中）</h2>
+      <table>
+        <tr><th>印</th><th class="c">3着内率</th><th>評価</th></tr>
+        <tr><td>本命（堅い軸）</td><td class="c ok">4/6</td><td>◎良好</td></tr>
+        <tr><td>▲（相手）</td><td class="c ok">4/5</td><td>◎良好</td></tr>
+        <tr><td>狙（妙味・回収狙い）</td><td class="c">1/6</td><td>想定内※</td></tr>
+        <tr><td>いずれかの印</td><td class="c ok">6/6</td><td>全的中</td></tr>
+      </table>
+      <div class="note">※当初これらの印の意味を取り違えていた（下記⑥-補足）。</div>
+    </div>
+  </div>
+
+  <h2>③ 核心：同じ予想のまま、買い方を変えると回収率はこう変わる（過去2年・約3,000レースで検証）</h2>
+  <div class="bar" style="background:#b3261e;width:34%;">現行の買い方　47%（今回実績）</div>
+  <div class="bar" style="background:#6b8cba;width:62%;">本命の複勝　86%</div>
+  <div class="bar" style="background:#3f7fc4;width:67%;">本命-狙のワイド　92%（2年で最も安定）</div>
+  <div class="bar" style="background:#14843f;width:97%;">改善案の組み合わせ　今回135% / 過去2年85%</div>
+  <div class="note">→ 予想ロジック（馬を選ぶ部分）は精度を確認できたため変更しない。<b>磨くのは「買い方」</b>。過去2年データでも一貫して「本命-狙のワイド」が最良で、今回の実戦結果とも方向が一致した。</div>
+
+  <div class="row">
+    <div class="col">
+      <h2>④ 明日(6/14)からの改善（確定）</h2>
+      <ul>
+        <li><b>【最重要】印の取り違えを修正</b>。当初「◎本命＝一番来る馬」と「狙＝回収率を取りに行く妙味馬」を混同し、当たりにくい妙味馬を本命扱いで買っていた。本来◎本命は堅く来る馬。両者を分離し、役割を正しく定義し直した。</li>
+        <li><b>買う人も選べる形に</b>：堅く当てたい人は本命中心、回収率を攻めたい人は狙を絡める。</li>
+        <li><b>買い方の本線を「狙-本命ワイド＋本命の複勝」に変更</b>。当たる体験と回収率を両立。</li>
+        <li><b>「当日オッズで本命を乗り換える」運用は廃止</b>（今回1レースで裏目）。</li>
+        <li>予想ロジック本体は据え置き（精度確認済み）。</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h2>⑤ 体制・データ基盤の進捗</h2>
+      <ul>
+        <li>予想ロジックは予想家の全教材（書籍・動画・有料記事264本）を分析し再構築。<b>過去2年・約3,000レースで検証済み</b>。</li>
+        <li>現在<b>過去5年分</b>へデータ拡張中。騎手×厩舎の相性・血統×コース適性も数値化し予想に反映する仕組みを構築済み。</li>
+        <li>毎週の予想→結果検証→改善のループが自動で回る。外れも含め全記録を保存（法令対応）。</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>⑥-補足：今回いちばんの学び（印の取り違え）</h2>
+  <div class="step" style="border-left:3px solid #e8b820;background:#fff8e6;">
+  競馬の印「◎（本命）」は本来<b>一番堅く来る馬</b>を指す。しかし当初の運用では、これを「回収率を取りに行く妙味の馬（狙）」に付けてしまっていた。妙味の馬は当たりにくいのが当然（今回も6回中1回）なのに、それを本命として買い目の中心に据えていたため、堅く来ていた馬（本来の本命）を取りこぼした。<b>「本命」と「狙」は別物</b>と整理し直したことが、今回最大の改善点。予想の精度の問題ではなく、印の定義・使い方の問題だった。
+  </div>
+
+  <h2>⑦ 今後の進め方</h2>
+  <div class="step">
+    <b>明日6/14(日)に改善した買い方でテスト</b>（無償・検証運用）を行い、結果と改善後の精度を確認する。あわせて過去データを5年分まで拡張し、ロジックの精度を引き上げる。<b>来週から販売を開始</b>する計画：note 500円×10部限定・メルマガ約9,000人へ告知。法務（景表法・特商法・プラットフォーム規約）は一次情報で確認済みで、的中保証や誇大表現は使わず、外れも含め結果を正直に提示する方針。
+  </div>
+
+  <div class="foot">作成 2026-06-13 ／ あお（YouTube競馬チャンネル）予想プロジェクト ／ 本資料は社内報告用・一般公開不可</div>
+</div>
+</body>
+</html>
