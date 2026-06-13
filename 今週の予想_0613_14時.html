@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6/13(土) 厳選6レース予想</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A4; margin: 0; }
+  body { font-family:"Hiragino Sans","Yu Gothic",sans-serif; color:#1a2433; line-height:1.6; }
+  .sheet { width:210mm; min-height:297mm; height:auto; padding:11mm 13mm 7mm; background:#fff; display:flex; flex-direction:column; }
+  h1 { font-size:15.5pt; margin-bottom:1mm; }
+  h1 span { color:#0b57d0; }
+  .byline { display:flex; align-items:center; gap:4mm; margin:2mm 0 3mm; }
+  .byline img { width:18mm; height:18mm; border-radius:50%; object-fit:cover; object-position:60% 20%; border:1mm solid #eef4ff; box-shadow:0 1mm 3mm rgba(20,40,80,.15); }
+  .byline .name { font-size:11pt; font-weight:900; }
+  .byline .desc { font-size:8.5pt; color:#5a6b80; }
+  .lead { color:#5a6b80; font-size:8.5pt; line-height:1.55; margin-bottom:3.5mm; border-bottom:2px solid #0b57d0; padding-bottom:2.5mm; }
+  .exp { margin-left:auto; font-size:9pt; font-weight:900; padding:.3mm 2.5mm; border-radius:1.2mm; flex-shrink:0; }
+  .e3 { background:#fde8e8; color:#b3261e; } .e2 { background:#eef4ff; color:#0b57d0; } .e1 { background:#f0f0f0; color:#777; }
+  .guide { background:#f0f4fa; border-radius:2.5mm; padding:3mm 4mm; margin:2mm 0 3mm; font-size:8pt; line-height:1.7; color:#333; }
+  .guide b { color:#0b57d0; }
+  .update { color:#0b57d0; font-size:8.5pt; font-weight:700; background:#eef4ff; border-radius:2mm;
+  padding:2mm 3.5mm; margin-bottom:2.5mm; line-height:1.6; }
+  .disclaimer { background:#fff8e6; border:1.5px solid #e8b820; border-radius:2.5mm;
+  padding:2.5mm 4mm; margin-bottom:3.5mm; font-size:8.5pt; line-height:1.7; color:#5a4a1a; }
+  .disclaimer b { color:#9a6b00; font-size:9.5pt; }
+  .race { margin-bottom:3.2mm; padding-left:3mm; border-left:3px solid #0b57d0; }
+  .r1 { display:flex; align-items:baseline; gap:2.5mm; }
+  .rname { font-size:10pt; font-weight:800; }
+  .rname b { background:#0b57d0; color:#fff; padding:.2mm 1.8mm; border-radius:1mm; margin-right:1mm; font-size:9pt; }
+  .rcond { font-size:7.5pt; color:#8a96ad; }
+  .marks { font-size:10pt; font-weight:800; margin:.6mm 0; }
+  .marks .h { color:#b3261e; }
+  .txt { font-size:8.5pt; color:#444; line-height:1.6; }
+  .txt b { color:#0b57d0; }
+  .kaime { font-size:8pt; color:#333; background:#f0f4fa; border-radius:1.2mm; padding:1mm 2.2mm; margin-top:.8mm; display:inline-block; }
+  .kaime b { color:#0b57d0; }
+  .warn { color:#b3261e; font-weight:700; }
+  .footer { margin-top:auto; font-size:7pt; color:#8a96ad; line-height:1.5; border-top:1px solid #dde5ef; padding-top:1.8mm; }
+
+  /* ===== スマホ表示（768px以下）: 画面幅に合わせ文字を大きく ===== */
+  @media screen and (max-width: 768px) {
+    body { background:#fff; }
+    .sheet { width:100%; min-height:auto; height:auto; padding:18px 16px 24px; }
+    h1 { font-size:22px; line-height:1.4; }
+    h1 span { display:block; font-size:15px; margin-top:4px; }
+    .byline img { width:56px; height:56px; }
+    .byline .name { font-size:19px; }
+    .byline .desc { font-size:14px; }
+    .lead { font-size:15px; line-height:1.8; }
+    .update { font-size:15px; line-height:1.7; padding:10px 12px; }
+    .disclaimer { font-size:15px; line-height:1.8; padding:12px 14px; }
+    .disclaimer b { font-size:16px; }
+    .guide { font-size:14.5px; line-height:1.85; padding:12px 14px; }
+    .race { padding-left:10px; margin-bottom:22px; border-left-width:4px; }
+    .r1 { flex-wrap:wrap; gap:6px; }
+    .rname { font-size:18px; }
+    .rname b { font-size:15px; padding:1px 8px; }
+    .rcond { font-size:13px; width:100%; }
+    .exp { font-size:14px; padding:2px 10px; margin-left:0; }
+    .marks { font-size:17px; line-height:1.7; }
+    .txt { font-size:15.5px; line-height:1.8; }
+    .kaime { font-size:15px; line-height:1.7; padding:8px 12px; display:block; }
+    .footer { font-size:12px; flex-wrap:wrap; gap:6px; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet" id="a4">
+  <h1>6/13(土) 厳選6レース予想 <span>｜14時更新版（函館 稍重・最新オッズ）</span></h1>
+  <div class="byline">
+    <img src="ao.png" alt="あお">
+    <div><div class="name">あお</div><div class="desc">YouTube <a href="https://www.youtube.com/@あおプロ競馬投資家-w8t" target="_blank" style="color:#0b57d0;font-weight:700;">「あおプロ競馬投資家」</a>｜データと検証で競馬を楽しむ予想です</div></div>
+  </div>
+  <div class="lead">
+    プロ予想家の手法を実際のレースデータで検証し、効いたルールだけで6レースを厳選しました。100%当たる予想はありません——実際の運用の中で「効いたルール」を磨き続けています。<br>
+    ◎は「いちばん期待する馬」。買い目は一例で、金額はお好みで。<br>
+    <b>期待度の見方</b>　★★★ 条件が揃った自信レース　／　★★ 妙味はあるが不確実要素あり　／　★ 楽しみ枠
+  </div>
+  <div class="update">📢 6/13 14時の更新 — 函館は雨で<b>馬場が稍重</b>になりました（芝・ダートとも）。東京は<b>ダート不良</b>。オッズは14時時点に更新。馬場が渋ると結果が動きやすいので、直前のオッズ・馬場をご確認ください。</div>
+
+  <div class="disclaimer">
+<b>⚠️ はじめにお読みください</b><br>
+この予想は的中や利益を保証するものではありません。外れることも普通にあります。馬券の購入は<b>ご自身の判断と操作</b>で、外れても困らない余裕資金の範囲でお楽しみください（購入代行は行いません）。オッズは常に変動します。20歳未満の方は馬券を購入できません。
+</div>
+<div class="guide">
+<b>📖 この予想の使い方（毎週共通）</b><br>
+<b>印の意味</b>: ◎=いちばん期待する馬（買い目の主役）／◯=信頼の軸（堅実に走る想定）／▲=能力上位だが何か課題あり／△=能力は認めるが過信注意／☆=うまくいけば大きい夢枠<br>
+<b>買い方の型</b>: 基本は「単勝◎＋馬連◎→人気上位3頭＋ワイド◎-☆」の5〜8点・均等額。点数を増やすより、1点の金額を揃えて長く続けるのがおすすめです<br>
+<b>資金の考え方</b>: 1レースの金額を先に決めて、期待度★★★は厚め・★は遊び程度に。外れても痛くない額が大前提です<br>
+<b>オッズ</b>: 本紙の表記は作成時点のもの。変動するので、購入時はご自身でご確認ください
+</div>
+<div class="race">
+    <div class="r1"><div class="rname"><b>東京9R</b>日野特別</div><div class="rcond">2勝・ダ2100m・14:20</div><span class="exp e3">期待度 ★★★</span></div>
+    <div class="marks"><span class="h">◎⑭エイカイソウル</span>（3人気11.9倍）　◯⑥シゲルカミカゼ　▲②　注⑦　☆①チムニートップス（27.1倍）</div>
+    <div class="txt">逃げ候補は①の1頭だけに見えるため、<b>前残りの流れになりやすい</b>と読んでいます。◎は戸崎騎手へ乗り替わり×距離延長で、先行力が活きる条件が揃ったのではないでしょうか。1人気は昇級初戦＋前走が後方まくり（スロー戦とは合わない可能性）、2人気は前走が地方の大井で、相手関係が読みにくいぶん人気が先行しやすいタイプ。ここでは評価を下げました。</div>
+    <div class="txt" style="color:#0b57d0;">【朝の更新】馬場は不良。時計が速くなり前有利が強まるため、先行の◎⑭（7.1倍に上昇）と逃げの☆①（64.8倍）にはむしろ追い風と見ています。</div>
+    <div class="kaime"><b>買い目7点:</b> 単勝⑭／馬連⑭→人気3頭／ワイド⑭-①・①→1,2人気</div>
+  </div>
+
+  <div class="race">
+    <div class="r1"><div class="rname"><b>東京12R</b>1勝クラス</div><div class="rcond">ダ1400m・16:15</div><span class="exp e2">期待度 ★★</span></div>
+    <div class="marks"><span class="h">◎⑯スーパーガール</span>（9.8倍）　◯③ラインジーク（2.3倍）　▲⑪</div>
+    <div class="txt">逃げたい馬が3頭おり、<b>前は苦しくなる可能性が高そう</b>です。当初◎だった③は大きく売れて妙味が薄くなったため、前走2着×50kgで値段の残る⑯に主役を交代しました。⑬は半年休み明け＋昇級＋キャリア1戦で疑っていましたが、<b>市場も一晩で同じ結論に達したようで3.5→9.5倍まで急落</b>。⑧は前走逃げて圧勝した馬ですが、今回は同型が3頭いて、前走のような単独マイペースは望めそうにありません。</div>
+    <div class="txt" style="color:#0b57d0;">【朝の更新】馬場は不良。「ダート不良では後方に構える人気薄は届きにくい」傾向のため、☆⑩（後方差し）は買い目から外しました。</div>
+    <div class="kaime"><b>買い目5点:</b> 単勝⑯／馬連⑯→人気3頭／ワイド⑯-③</div>
+  </div>
+
+  <div class="race">
+    <div class="r1"><div class="rname"><b>阪神10R</b>安芸特別</div><div class="rcond">2勝・ダ1200m・15:01</div><span class="exp e3">期待度 ★★★</span></div>
+    <div class="marks"><span class="h">◎①モカラマーズ</span>（4人気10.3倍）　◯⑬テーオーグレーザー（2.7倍）　▲⑭　☆⑨ミキノバカラ（36.1倍）</div>
+    <div class="txt">逃げ2頭＋先行4頭の並びで、<b>流れが速くなれば差しに向きそう</b>です。◎は前走、周りより1.4秒速い末脚を使った差し馬で松山騎手が継続。<span class="warn">人気の⑯は前走こそ逃げ切りましたが、今回はクラスが上がる上に大外枠、しかも同じく行きたい馬がもう1頭。前走のような楽な単独逃げは望めそうにないため、評価を下げました</span>。</div>
+    <div class="txt" style="color:#0b57d0;">【朝の更新】◎①は13.2倍まで広がり、狙いとしての妙味はむしろ増えました。馬場は良。</div>
+    <div class="kaime"><b>買い目7点:</b> 単勝①／馬連①→人気3頭／ワイド①-⑨・⑨→1,2人気</div>
+  </div>
+
+  <div class="race">
+    <div class="r1"><div class="rname"><b>阪神12R</b>1勝クラス</div><div class="rcond">芝1200m・16:30</div><span class="exp e2">期待度 ★★</span></div>
+    <div class="marks"><span class="h">◎③ブライトアゲイン</span>（3人気8.4倍）　◯⑫フィオラーノ（2.5倍）　▲⑧ヴァージル　△⑩　☆②ミルトベスト（14.4倍）</div>
+    <div class="txt">◎は「前走4着の再現×松山騎手強化×夏の牝馬×内枠」と好条件が4つ重なりました。☆②の大敗は上がり42.8秒——<b>流れが向かなかった事故の可能性が高く</b>、GII5着の実力は残っていると見ています。2人気⑩は「前走逃げ好走」のパターン＋同型⑪がいて楽はできそうになく、△までとしました。</div>
+    <div class="txt" style="color:#0b57d0;">【朝の更新】オッズが動き◎③5.6倍・◯⑫6.5倍・⑩3.6倍に。序列は変わりましたが印は据え置きます（「人気3頭」は購入時点の人気順で読み替えてください）。</div>
+    <div class="kaime"><b>買い目8点:</b> 単勝③／馬連③→1,2,4人気／ワイド③-②・③-⑫・②→1,2人気</div>
+  </div>
+
+  <div class="race">
+    <div class="r1"><div class="rname"><b>函館11R</b>函館スプリントS（G3）</div><div class="rcond">芝1200m・15:45</div><span class="exp e1">期待度 ★</span></div>
+    <div class="marks"><span class="h">◎④カルプスペルシュ</span>（2人気4.9倍）　◯⑩エーティーマクフィ（8.7倍）　▲③レイピア（2.8倍）　注⑨　☆⑤ジョーメッドヴィン（43.2倍）</div>
+    <div class="txt">函館は「洋芝」というパワーの要る特殊な芝で、<b>本州の実績がそのまま通用しないことが多い</b>舞台です。◎は洋芝2戦2好走×1200mへ短縮×開幕週の内枠と、条件は揃って見えます。能力最上位の▲③は洋芝1走1敗で、2.8倍はややリスクに見合わない印象。雨予報もあり——渋れば522kgのパワー型☆⑤の出番が増えるかもしれません（朝の馬場発表を確認）。</div>
+    <div class="txt" style="color:#0b57d0;">【14時の更新】馬場が稍重に。◎④はさらに売れて<b>1番人気（4.3倍）</b>に。芝の稍重は人気馬が素直に走りやすい傾向で、洋芝巧者の◎には悪くない条件です。重・不良まで渋れば522kgのパワー型☆⑤の比重が上がります。</div>
+    <div class="kaime"><b>買い目7点:</b> 単勝④／馬連④→人気3頭／ワイド④-⑤・⑤→1,2人気</div>
+  </div>
+
+  <div class="race">
+    <div class="r1"><div class="rname"><b>函館12R</b>1勝クラス</div><div class="rcond">ダ1700m・16:30</div><span class="exp e2">期待度 ★★</span></div>
+    <div class="marks"><span class="h">◎②ポンピエ</span>（1人気4.8倍）　◯⑤ロードアルディート（2人気5.1倍）　注⑦　☆⑨ハヤブサオヒメサマ</div>
+    <div class="txt">函館ダ1700は先頭に立った馬の<b>約4割がそのまま3着以内</b>に残る傾向のコース。データ上、先頭を主張しそうな馬は②だけに見え、ローテーションも好相性の型です。正直にお伝えすると、昨夜12番人気・24倍だったこの馬は、<b>レース当日には1番人気（4.8倍）まで売れました</b>。「人気の盲点」という当初の妙味はもう消えています。ただ、狙った理由＝単騎逃げが見込めること、馬場が稍重に渋ってダートの前残りがさらに強まることは変わりません。妙味は薄れましたが、本命としての評価は維持します。当初軸の⑦は前走1.8秒差負けが分かり、評価を下げました。</div>
+    <div class="kaime"><b>買い目7点:</b> 単勝②／馬連②→人気3頭／ワイド②-⑨・⑨→1,2人気</div>
+  </div>
+
+  <div class="footer"><div>印は6/12(金)21時に確定・オッズ表記は6/13(土)朝（前日最終）時点。</div><div class="brand">あお式・データ実証型予想</div></div>
+</div>
+</body>
+</html>
