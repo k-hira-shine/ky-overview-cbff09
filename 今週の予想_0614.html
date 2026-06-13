@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6/14 厳選6レース予想</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A4; margin: 0; }
+  body { font-family:"Hiragino Sans","Yu Gothic",sans-serif; color:#1a2433; line-height:1.6; }
+  .sheet { width:210mm; min-height:297mm; height:auto; padding:11mm 13mm 7mm; background:#fff; display:flex; flex-direction:column; }
+  h1 { font-size:15.5pt; margin-bottom:1mm; }
+  h1 span { color:#0b57d0; }
+  .byline { display:flex; align-items:center; gap:4mm; margin:2mm 0 3mm; }
+  .byline img { width:18mm; height:18mm; border-radius:50%; object-fit:cover; object-position:60% 20%; border:1mm solid #eef4ff; box-shadow:0 1mm 3mm rgba(20,40,80,.15); }
+  .byline .name { font-size:11pt; font-weight:900; }
+  .byline .desc { font-size:8.5pt; color:#5a6b80; }
+  .lead { color:#5a6b80; font-size:8.5pt; line-height:1.55; margin-bottom:3.5mm; border-bottom:2px solid #0b57d0; padding-bottom:2.5mm; }
+  .exp { margin-left:auto; font-size:9pt; font-weight:900; padding:.3mm 2.5mm; border-radius:1.2mm; flex-shrink:0; }
+  .e3 { background:#fde8e8; color:#b3261e; } .e2 { background:#eef4ff; color:#0b57d0; } .e1 { background:#f0f0f0; color:#777; }
+  .guide { background:#f0f4fa; border-radius:2.5mm; padding:3mm 4mm; margin:2mm 0 3mm; font-size:8pt; line-height:1.7; color:#333; }
+  .guide b { color:#0b57d0; }
+  .update { color:#0b57d0; font-size:8.5pt; font-weight:700; background:#eef4ff; border-radius:2mm;
+  padding:2mm 3.5mm; margin-bottom:2.5mm; line-height:1.6; }
+  .disclaimer { background:#fff8e6; border:1.5px solid #e8b820; border-radius:2.5mm;
+  padding:2.5mm 4mm; margin-bottom:3.5mm; font-size:8.5pt; line-height:1.7; color:#5a4a1a; }
+  .disclaimer b { color:#9a6b00; font-size:9.5pt; }
+  .race { margin-bottom:3.2mm; padding-left:3mm; border-left:3px solid #0b57d0; }
+  .r1 { display:flex; align-items:baseline; gap:2.5mm; }
+  .rname { font-size:10pt; font-weight:800; }
+  .rname b { background:#0b57d0; color:#fff; padding:.2mm 1.8mm; border-radius:1mm; margin-right:1mm; font-size:9pt; }
+  .rcond { font-size:7.5pt; color:#8a96ad; }
+  .marks { font-size:10pt; font-weight:800; margin:.6mm 0; }
+  .marks .h { color:#b3261e; }
+  .txt { font-size:8.5pt; color:#444; line-height:1.6; }
+  .txt b { color:#0b57d0; }
+  .kaime { font-size:8pt; color:#333; background:#f0f4fa; border-radius:1.2mm; padding:1mm 2.2mm; margin-top:.8mm; display:inline-block; }
+  .kaime b { color:#0b57d0; }
+  .warn { color:#b3261e; font-weight:700; }
+  .footer { margin-top:auto; font-size:7pt; color:#8a96ad; line-height:1.5; border-top:1px solid #dde5ef; padding-top:1.8mm; }
+
+  /* ===== スマホ表示（768px以下）: 画面幅に合わせ文字を大きく ===== */
+  @media screen and (max-width: 768px) {
+    body { background:#fff; }
+    .sheet { width:100%; min-height:auto; height:auto; padding:18px 16px 24px; }
+    h1 { font-size:22px; line-height:1.4; }
+    h1 span { display:block; font-size:15px; margin-top:4px; }
+    .byline img { width:56px; height:56px; }
+    .byline .name { font-size:19px; }
+    .byline .desc { font-size:14px; }
+    .lead { font-size:15px; line-height:1.8; }
+    .update { font-size:15px; line-height:1.7; padding:10px 12px; }
+    .disclaimer { font-size:15px; line-height:1.8; padding:12px 14px; }
+    .disclaimer b { font-size:16px; }
+    .guide { font-size:14.5px; line-height:1.85; padding:12px 14px; }
+    .race { padding-left:10px; margin-bottom:22px; border-left-width:4px; }
+    .r1 { flex-wrap:wrap; gap:6px; }
+    .rname { font-size:18px; }
+    .rname b { font-size:15px; padding:1px 8px; }
+    .rcond { font-size:13px; width:100%; }
+    .exp { font-size:14px; padding:2px 10px; margin-left:0; }
+    .marks { font-size:17px; line-height:1.7; }
+    .txt { font-size:15.5px; line-height:1.8; }
+    .kaime { font-size:15px; line-height:1.7; padding:8px 12px; display:block; }
+    .footer { font-size:12px; flex-wrap:wrap; gap:6px; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet" id="a4">
+  <h1>6/14(日) 厳選6レース予想 <span>｜本日版（実オッズ反映）</span></h1>
+  <div class="byline">
+    <img src="ao.png" alt="あお">
+    <div><div class="name">あお</div><div class="desc">YouTube <a href="https://www.youtube.com/@あおプロ競馬投資家-w8t" target="_blank" style="color:#0b57d0;font-weight:700;">「あおプロ競馬投資家」</a>｜データと検証で競馬を楽しむ予想です</div></div>
+  </div>
+  <div class="lead">
+    プロ予想家の手法を実際のレースデータで検証し、効いたルールだけで6レースを厳選しました。100%当たる予想はありません——実際の運用の中で「効いたルール」を磨き続けています。<br>
+    印は<b>◎本命＝堅く来ると見る軸／狙＝回収率を取りに行く妙味の馬</b>の2本立て。堅く当てたい方は◎中心、回収率を攻めたい方は狙を絡めてどうぞ。買い目は一例で、金額はお好みで。<br>
+    <b>期待度の見方</b>　★★★★ 本日の本線　／　★★★ 自信あり　／　★★ 妙味はあるが不確実　／　★ 楽しみ枠
+  </div>
+  <div class="disclaimer">
+    <b>⚠️ はじめにお読みください</b><br>
+    この予想は的中や利益を保証するものではありません。外れることも普通にあります。馬券の購入はご自身の判断と操作で、外れても困らない余裕資金の範囲でお楽しみください（購入代行は行いません）。オッズは常に変動します。20歳未満の方は馬券を購入できません。
+  </div>
+  <div class="guide">
+  <b>📖 この予想の使い方</b><br>
+  <b>印の意味</b>: ◎本命=いちばん堅く来ると見る軸／狙=回収率を取りに行く妙味の馬（当たれば大きいが当たりにくい）／◯対抗・▲=堅実な相手<br>
+  <b>買い方の型</b>: 「複勝◎（当たる土台）＋ワイド 狙-◎（回収の本線）＋ワイド ◎-▲（押さえ）」の4点・均等が一例。点数や金額はお好みで<br>
+  <b>資金の考え方</b>: 1レースの金額を先に決め、期待度の高いレースを厚めに。外れても痛くない額が大前提です
+  </div>
+
+  <div class="race">
+    <div class="r1"><div class="rname">函館10R 津軽海峡特別</div><div class="rcond">2勝・ダ1700m・稍重・15:25</div><span class="exp e3">期待度 ★★★★</span></div>
+    <div class="marks"><span style="color:#b3261e;font-weight:900;">【本日の本線】</span><span class="h">◎本命 ④ディアウス</span>（1番人気・4.0倍）　／　<span style="color:#b8860b;font-weight:900;">狙 ⑨レイザリオ</span>（10番人気・19.3倍）</div>
+    <div class="txt">相手: ▲③チギリ(3番人気)・◯⑤エアニゲラ(8番人気)</div>
+    <div class="txt">函館ダート1700mは先頭に立った馬が残りやすいコース。◎④は札幌ダ1700を勝ち、北海道の小回りダートでこその先行力。狙⑨は10番人気と評価を落としていますが、前走を先頭で運んだ逃げ馬で、このコースと噛み合えば一発の可能性が十分あると見ています。</div>
+    <div class="txt" style="color:#0b57d0;">【馬場・展開メモ】馬場が稍重に渋ったぶん、ダートは時計が速くなり前有利がさらに強まる見込みです。</div>
+    <div class="kaime"><b>買い目の一例（4点・各100円）:</b> 複勝◎④デ ／ ワイド「狙-◎」(本線) ／ ワイド「◎-▲」 ／ 単勝 狙(少額)</div>
+  </div>
+  <div class="race">
+    <div class="r1"><div class="rname">東京9R 芦ノ湖特別</div><div class="rcond">2勝・芝1600m・15:35</div><span class="exp e3">期待度 ★★★</span></div>
+    <div class="marks"><span class="h">◎本命 ①テーオーアルアイン</span>（2番人気・4.4倍）　／　<span style="color:#b8860b;font-weight:900;">狙 ⑥ミーントゥビー</span>（5番人気・9.5倍）</div>
+    <div class="txt">相手: ▲⑩ルクスジニア(7番人気)・◯④フジガイフウ(1番人気)</div>
+    <div class="txt">明確な逃げ馬が不在で、スロー〜ミドルの前・好位有利を想定。◎①はオープン級のレースで上がり最速の実績があり、東京の長い直線でこその一頭。狙⑥は前走で上がり32秒台の鋭い末脚を見せており、展開が向けば差し込めると見ています。</div>
+    
+    <div class="kaime"><b>買い目の一例（4点・各100円）:</b> 複勝◎①テ ／ ワイド「狙-◎」(本線) ／ ワイド「◎-▲」 ／ 単勝 狙(少額)</div>
+  </div>
+  <div class="race">
+    <div class="r1"><div class="rname">東京12R</div><div class="rcond">2勝・ダ1600m・稍重・16:20</div><span class="exp e3">期待度 ★★★</span></div>
+    <div class="marks"><span class="h">◎本命 ⑪ロンギングフォユー</span>（1番人気・2.9倍）　／　<span style="color:#b8860b;font-weight:900;">狙 ②シーニックビュー</span>（6番人気・14.0倍）</div>
+    <div class="txt">相手: ▲⑩ミダース(3番人気)・◯③セブンマイスター(4番人気)</div>
+    <div class="txt">◎⑪は当コースで先行して連対実績があり、堅実に上位が見込める一頭。狙②はこのメンバー唯一の単騎逃げが見込め、前残りの展開になれば一発の妙味があると見ています。</div>
+    <div class="txt" style="color:#0b57d0;">【馬場・展開メモ】馬場は稍重。ダートは前が止まりにくく、逃げ・先行に有利な条件です。</div>
+    <div class="kaime"><b>買い目の一例（4点・各100円）:</b> 複勝◎⑪ロ ／ ワイド「狙-◎」(本線) ／ ワイド「◎-▲」 ／ 単勝 狙(少額)</div>
+  </div>
+  <div class="race">
+    <div class="r1"><div class="rname">函館9R 八雲特別</div><div class="rcond">1勝・芝1800m・14:50</div><span class="exp e3">期待度 ★★★</span></div>
+    <div class="marks"><span class="h">◎本命 ⑩ドッグウッド</span>（2番人気・6.1倍）　／　<span style="color:#b8860b;font-weight:900;">狙 ①サウンドサンライズ</span>（8番人気・25.6倍）</div>
+    <div class="txt">相手: ▲⑦ポタリング(7番人気)・◯⑤モンローウォーク(1番人気)</div>
+    <div class="txt">◎⑩は阪神で堅実に走り、好位から崩れない安定感。狙①は8番人気と人気を大きく落としていますが、得意の北海道コースに戻る一戦で、人気以上に走れる余地があると見ています。なお1番人気⑤は約10か月の休み明けで、過信は禁物と見て対抗評価にとどめました。</div>
+    
+    <div class="kaime"><b>買い目の一例（4点・各100円）:</b> 複勝◎⑩ド ／ ワイド「狙-◎」(本線) ／ ワイド「◎-▲」 ／ 単勝 狙(少額)</div>
+  </div>
+  <div class="race">
+    <div class="r1"><div class="rname">函館12R</div><div class="rcond">1勝・ダ1700m・稍重・16:30</div><span class="exp e2">期待度 ★★</span></div>
+    <div class="marks"><span class="h">◎本命 ⑥アチーヴァー</span>（1番人気・4.2倍）　／　<span style="color:#b8860b;font-weight:900;">狙 ④グレイスフルマーチ</span>（6番人気・11.5倍）</div>
+    <div class="txt">相手: ▲⑤ガーネットフレア(3番人気)・◯②アオハルブルース(4番人気)</div>
+    <div class="txt">逃げ候補が複数で、前が競り合えば好位差しが浮上する展開を想定。◎⑥はまくり脚が使えるタイプで、前が崩れたときに差し込めると見ています。狙④は6番人気の妙味で、展開待ちの一頭です。</div>
+    <div class="txt" style="color:#0b57d0;">【馬場・展開メモ】稍重のダートで前有利の側面もあるため、逃げ馬の粘りにも注意。</div>
+    <div class="kaime"><b>買い目の一例（4点・各100円）:</b> 複勝◎⑥ア ／ ワイド「狙-◎」(本線) ／ ワイド「◎-▲」 ／ 単勝 狙(少額)</div>
+  </div>
+  <div class="race">
+    <div class="r1"><div class="rname">阪神11R 宝塚記念(G1)</div><div class="rcond">G1・芝2200m・15:40</div><span class="exp e1">期待度 ★</span></div>
+    <div class="marks"><span style="color:#b3261e;font-weight:900;">【楽しみ枠】</span><span class="h">◎本命 ⑤クロワデュノール</span>（1番人気・1.5倍）　／　<span style="color:#b8860b;font-weight:900;">狙 ⑯メイショウタバル</span>（2番人気・7.9倍）</div>
+    <div class="txt">相手: ▲①ダノンデサイル(5番人気)・◯⑰レガレイラ(4番人気)</div>
+    <div class="txt">正直にお伝えすると、G1は私たちのデータ予想が最も苦手とする領域です（過去の検証でも重賞は分が悪い）。◎⑤は能力最上位で堅いと見ていますが1.5倍と妙味は薄く、狙⑯は前年覇者の逃げ馬で「前・内・展開」が向けば、という楽しみ枠です。配当妙味は乏しいレースとして、参考程度に。</div>
+    
+    <div class="kaime"><b>買い目の一例（4点・各100円）:</b> 複勝◎⑤ク ／ ワイド「狙-◎」(本線) ／ ワイド「◎-▲」 ／ 単勝 狙(少額)</div>
+  </div>
+  <div class="footer"><div>印・オッズは6/14(日)朝時点。直前のオッズは必ずご自身でご確認ください。</div><div class="brand">あお式・データ実証型予想</div></div>
+</div>
+</body>
+</html>
