@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>6/13(土) 厳選6レース予想</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -37,6 +38,32 @@
   .kaime b { color:#0b57d0; }
   .warn { color:#b3261e; font-weight:700; }
   .footer { margin-top:auto; font-size:7pt; color:#8a96ad; line-height:1.5; border-top:1px solid #dde5ef; padding-top:1.8mm; }
+
+  /* ===== スマホ表示（768px以下）: 画面幅に合わせ文字を大きく ===== */
+  @media screen and (max-width: 768px) {
+    body { background:#fff; }
+    .sheet { width:100%; min-height:auto; height:auto; padding:18px 16px 24px; }
+    h1 { font-size:22px; line-height:1.4; }
+    h1 span { display:block; font-size:15px; margin-top:4px; }
+    .byline img { width:56px; height:56px; }
+    .byline .name { font-size:19px; }
+    .byline .desc { font-size:14px; }
+    .lead { font-size:15px; line-height:1.8; }
+    .update { font-size:15px; line-height:1.7; padding:10px 12px; }
+    .disclaimer { font-size:15px; line-height:1.8; padding:12px 14px; }
+    .disclaimer b { font-size:16px; }
+    .guide { font-size:14.5px; line-height:1.85; padding:12px 14px; }
+    .race { padding-left:10px; margin-bottom:22px; border-left-width:4px; }
+    .r1 { flex-wrap:wrap; gap:6px; }
+    .rname { font-size:18px; }
+    .rname b { font-size:15px; padding:1px 8px; }
+    .rcond { font-size:13px; width:100%; }
+    .exp { font-size:14px; padding:2px 10px; margin-left:0; }
+    .marks { font-size:17px; line-height:1.7; }
+    .txt { font-size:15.5px; line-height:1.8; }
+    .kaime { font-size:15px; line-height:1.7; padding:8px 12px; display:block; }
+    .footer { font-size:12px; flex-wrap:wrap; gap:6px; }
+  }
 </style>
 </head>
 <body>
